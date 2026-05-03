@@ -1,0 +1,56 @@
+header {
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid black;
+  padding: 10px;
+  background-color: white;
+}
+body {
+  background-color: lightblue;
+  font-family: verdana;
+}
+p {
+  width: 1000px;
+  font-size: 16px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.side-text {
+  text-align: left;
+  margin-left: 40px;
+}
+
+.box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.header-container{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.profile-btn{
+  text-decoration: none;
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: black;
+  border: 1px solid black;
+}
+
+.signup-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}

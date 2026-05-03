@@ -1,0 +1,20 @@
+css styles
+text-align: center;
+color: red;
+background-color: lightblue;
+
+padding: 20px;
+margin: 20px;
+
+font-size: 20px;
+font-weight: bold;
+
+
+Html styles
+
+<b>bold</b>
+<strong>important bold</strong>
+<i>italic</i>
+<p>paragraph</p>
+<h1>title</h1>
+<a href="#">link</a>
