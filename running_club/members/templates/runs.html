@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Login |Run Club| Yonkers trails!</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+
+    <body>
+            <header class="header-container">
+            <h1>
+                <a href="/"> Run Club Yonkers! keeping it fast!</a>
+            </h1>
+                <nav class="nav-links">
+                    <a href="/profile/" class="profile-btn">Profile</a>
+                    <a href="/runs/" class="profile-btn">My Runs</a>
+                    <a href="{% url 'logout' %}" class="profile-btn">Logout</a>
+                </nav>
+            </header>
+
+    <section class="box" style="margin: 20px;">
+        <h2>Your Stats</h2>
+
+        <p><strong>Avg Distance:</strong> {{ avg_distance|floatformat:2 }} miles</p>
+        <p><strong>Avg Duration:</strong> {{ avg_duration|floatformat:2 }} min</p>
+        <p><strong>Avg Pace:</strong> {{ avg_pace|floatformat:2 }} min/mile</p>
+
+        <hr>
+
+        <!-- toggle button -->
+        <button type="button" onclick="toggleRunForm()">
+            + Add Run
+        </button>
+
+        <div id="runForm" style="display:none; margin-top:15px;">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Distance (miles)</label>
+                <input type="number" step="0.01" name="distance">
+
+                <label>Duration (minutes)</label>
+                <input type="number" name="duration">
+
+                <button type="submit">Save Run</button>
+            </form>
+
+        </div>
+    </section>
+
+    <section class="box" style="margin: 20px;">
+
+        <h2>Performance Over Time</h2>
+
+        <canvas id="distanceChart"></canvas>
+        <br><br>
+        <canvas id="durationChart"></canvas>
+
+    </section>
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    const labels = {{ labels|safe }};
+    const distances = {{ distances|safe }};
+    const durations = {{ durations|safe }};
+
+    // Distance chart
+    new Chart(document.getElementById("distanceChart"), {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Distance (miles)",
+                data: distances,
+                borderColor: "green",
+                fill: false,
+                tension: 0.2
+            }]
+        }
+    });
+
+    new Chart(document.getElementById("durationChart"), {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Duration (minutes)",
+                data: durations,
+                borderColor: "blue",
+                fill: false,
+                tension: 0.2
+            }]
+        }
+    });
+    </script>
+
+    <script>
+    function toggleRunForm() {
+        const form = document.getElementById("runForm");
+
+        if (form.style.display === "none") {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
+    }
+    </script>
+
+    </body>
+    </html>

@@ -7,14 +7,22 @@
     </head>
     <body>
             <header class="header-container">
-            <h1>
-                <a href="/"> Run Club Yonkers! keeping it fast!</a>
-            </h1>
+                <h1><a href="/"> Run Club Yonkers! keeping it fast!</a></h1>
+                <nav class="nav-links">
+                    <a href="/profile/" class="profile-btn">Profile</a>
+                    <a href="/runs/" class="profile-btn">My Runs</a>
+                    <a href="{% url 'logout' %}" class="profile-btn">Logout</a>
+                </nav>
             </header>
 
           <main>
             <section>
                 <div>
+                    {% if error %}
+                        <div class="error-box">
+                            {{ error }}
+                        </div>
+                    {% endif %}
                     <form method="POST">
                     {% csrf_token %}
                     <label>Email</label>

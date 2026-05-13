@@ -14,8 +14,8 @@ body {
   font-family: verdana;
 }
 p {
-  width: 1000px;
   font-size: 16px;
+  line-height: 1.5;
 }
 
 .center-text {
@@ -88,4 +88,27 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-links {
+
+  display: flex;
+
+  /* Space between nav buttons */
+  gap: 10px;
+}
+.error-box {
+  background-color: #ffdddd;
+  border: 1px solid red;
+  color: darkred;
+  padding: 10px;
+  margin: 10px auto;
+  width: 300px;
+  border-radius: 5px;
+  text-align: center;
 }

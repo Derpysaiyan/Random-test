@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Profile | Run Club | Yonkers Trails</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+
+    <body>
+
+        <header class="header-container">
+            <h1><a href="/"> Run Club Yonkers! keeping it fast!</a></h1>
+
+        <nav class="nav-links">
+            <a href="/profile/" class="profile-btn">Profile</a>
+            <a href="/runs/" class="profile-btn">My Runs</a>
+            <a href="{% url 'logout' %}" class="profile-btn">Logout</a>
+        </nav>
+        </header>
+
+        
+        <main class="box" style="margin: 20px;"> 
+        <h2>{{ member.firstname }}'s Profile</h2>
+        <p><strong>Email:</strong> {{ member.email }}</p>
+        <p><strong>Goals:</strong> {{ member.goals }}</p>
+        <p><strong>Experience:</strong> {{ member.experience }}</p>
+
+        <button type="button" onclick="toggleEdit()">
+            Edit Profile
+        </button>
+
+        <div id="editForm" style="display:none; margin-top:15px;">
+
+            <h3>Edit Profile</h3>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Goals</label>
+                <input type="text" name="goals" value="{{ member.goals }}">
+
+                <label>Experience</label>
+                <input type="text" name="experience" value="{{ member.experience }}">
+
+                <button type="submit">Save Changes</button>
+            </form>
+
+        </div>
+
+        <hr>
+
+        <h3>Availability</h3>
+
+        {% if availability %}
+            {% for a in availability %}
+                <div class="box" style="margin-bottom:10px;">
+                    <p><strong>Days:</strong> {{ a.days }}</p>
+                    <p><strong>Times:</strong> {{ a.times }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p><em>No availability set yet.</em></p>
+        {% endif %}
+
+        <button type="button" onclick="toggleAvailability()">
+            Add Availability
+        </button>
+
+        <div id="availabilityForm" style="display:none; margin-top:15px;">
+
+            <form method="POST" action="/availability/">
+                {% csrf_token %}
+
+                <label>Days</label>
+                <input type="text" name="days">
+
+                <label>Times</label>
+                <input type="text" name="times">
+
+                <button type="submit">Save</button>
+            </form>
+
+        </div>
+
+    </main>
+
+    <script>
+    function toggleEdit() {
+        const form = document.getElementById("editForm");
+        form.style.display = (form.style.display === "none") ? "block" : "none";
+    }
+
+    function toggleAvailability() {
+        const form = document.getElementById("availabilityForm");
+        form.style.display = (form.style.display === "none") ? "block" : "none";
+    }
+    </script>
+
+    </body>
+</html>

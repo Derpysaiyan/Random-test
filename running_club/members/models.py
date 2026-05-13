@@ -16,3 +16,11 @@ class Availability(models.Model):
     member = models.ForeignKey(Member,on_delete=models.CASCADE)#delete if model is deleted
     days = models.TextField()
     times = models.TextField()
+
+class Run(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+
+    distance = models.FloatField()  # miles
+    duration = models.PositiveIntegerField()  # minutes
+
+    created_at = models.DateTimeField(auto_now_add=True)
