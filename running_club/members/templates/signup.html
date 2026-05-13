@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sign up | Run Club| Yonkers trails! </title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <header class="header-container">
+            <h1>
+                <a href="/"> Run Club Yonkers! keeping it fast!</a>
+            </h1>
+
+            <a href="/profile/" class="profile-btn">Profile</a>
+        </header>
+        <main>
+            <section>
+                <div>
+                    <form method="POST">
+                    {% csrf_token %}
+                    <label>Firstname</label>
+                    <input type="text" name="firstname">
+                    <label>Lastname</label>
+                    <input type="text" name="lastname">
+                    <label>Age</label>
+                    <input type="number" name="age">
+                    <label>Email</label>
+                    <input type="email" name="email">
+                    <label>Password</label>
+                    <input type="password" name="password">
+                    <label>Experience</label>
+                    <input type="text" name="experience">
+                    <label>Goals</label>
+                    <input type="text" name="goals">
+                    <button type="submit">Sign up</button>
+                    </form>
+                </div>
+            </section>
+            <p>
+                Already a member? Log in
+            </p>
+            <a href="/login/" class="profile-btn">Log in</a>
+        </main>
+    </body>
+</html>

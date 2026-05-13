@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Login |Run Club| Yonkers trails!</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+            <header class="header-container">
+            <h1>
+                <a href="/"> Run Club Yonkers! keeping it fast!</a>
+            </h1>
+            </header>
+
+          <main>
+            <section>
+                <div>
+                    <form method="POST">
+                    {% csrf_token %}
+                    <label>Email</label>
+                    <input type="text" name="email">
+                    <label>Password</label>
+                    <input type="text" name="password">
+                    <button type="submit">Login</button>
+                    </form>
+                </div>
+            </section>
+    </body>
+
+</html>
